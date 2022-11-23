@@ -2,10 +2,10 @@ package utils
 
 import (
 	"math/rand"
-	"time"
 	"os"
+	"strings"
+	"time"
 )
-
 
 //generate random string
 func RandString() string {
@@ -28,3 +28,14 @@ func Exist(path string) bool {
 		return true
 	}
 }
+
+//check if protocol being used is allowed
+func IsProtocolAllowed(url string, protocols []string) bool {
+	for _, proto := range protocols {
+		if strings.HasPrefix(url, proto) {
+			return true
+		}
+	}
+
+	return false
+} 

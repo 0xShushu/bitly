@@ -15,10 +15,18 @@ type Page struct {
 
 //handler which makes the shorten url
 func Shorten(w http.ResponseWriter, r *http.Request) {
+	//allowed protocols
+	allowed := [3]string{"https://", "http://", "mailto:"}
+
 	//get url param
 	url := r.URL.Query().Get("url")
+	
+	//check if url is empty or using a now allowed protocol
 	if url == "" {
 		http.Error(w, "GET param url is empty", http.StatusInternalServerError)
+		return
+	} else if !utils.IsProtocolAllowed(url, allowed[:]) {
+		http.Error(w, "Protocol not allowed, URLs have to start with http://, https:// or mailto:", http.StatusInternalServerError)
 		return
 	}
 	
