@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL shortener</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
+    <style>
+        h1 {
+            font-family: 'Nosifer', cursive;
+            text-align: center;
+            font-size: 100px;
+        }
+        input {
+            text-align: center;
+            margin: auto;
+            display: block;
+            width: 30%;
+            height: 50px;
+            margin-top: 10px;
+            font-size: 50px;
+
+        }
+        p {
+            text-align: center;
+            font-family: 'Nosifer', cursive;
+            font-size: 20px;
+        }
+        a {
+            text-decoration: none;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>URL shortener</h1>
+    <form action="/shorten">
+        <input type="text" name="url" placeholder="URL to shorten">
+    </form>
+    <p>{{.Text}} <a href="{{.URL}}">{{.URL}}</a></p>
+    
+</body>
+</html>
