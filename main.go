@@ -8,6 +8,8 @@ import (
 	"github.com/0xshushu/bitly/database"
 )
 
+//cringe
+
 func main() {
 	//initialize database
 	handler, err := database.Init()
