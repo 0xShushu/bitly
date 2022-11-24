@@ -25,6 +25,7 @@ func main() {
 	r := mux.NewRouter().StrictSlash(true)
 	
 	//set routes
+	r.NotFoundHandler = http.HandlerFunc(handlers.NotFoundHandler)
 	r.HandleFunc("/", handlers.Index).Methods("GET")
 	r.HandleFunc("/shorten", handlers.Shorten).Methods("GET")
 	r.HandleFunc("/s/{id}", handlers.Redirect).Methods("GET")
