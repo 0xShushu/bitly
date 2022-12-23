@@ -2,14 +2,13 @@ package handlers
 
 import (
 	"net/http"
-	"github.com/gorilla/mux"
 	"github.com/0xshushu/bitly/database"
+	"github.com/go-chi/chi/v5"
 )
 
 func Redirect(w http.ResponseWriter, r *http.Request) {
 	//get id from url variables
-	vars := mux.Vars(r)
-	id := vars["id"]
+	id := chi.URLParam(r, "id")
 
 	//get url from sqlite db
 	url, err := database.Select(id)

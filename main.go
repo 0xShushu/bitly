@@ -1,11 +1,10 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
 	"net/http"
 	"fmt"
-	"github.com/0xshushu/bitly/handlers"
 	"github.com/0xshushu/bitly/database"
+	"github.com/0xshushu/bitly/server"
 )
 
 //cringe
@@ -22,15 +21,11 @@ func main() {
 	defer database.Handler.DB.Close()
 
 	//make a new router
-	r := mux.NewRouter().StrictSlash(true)
+	s := server.NewServer()
 	
-	//set routes
-	r.NotFoundHandler = http.HandlerFunc(handlers.NotFoundHandler)
-	r.HandleFunc("/", handlers.Index).Methods("GET")
-	r.HandleFunc("/shorten", handlers.Shorten).Methods("GET")
-	r.HandleFunc("/s/{id}", handlers.Redirect).Methods("GET")
+	//mount handlers
+	s.MountHandlers()
 
 	//listen and serve
-	fmt.Println(http.ListenAndServe("127.1:3000", r))
-	
+	fmt.Println(http.ListenAndServe(":3000", s.Router))	
 }
