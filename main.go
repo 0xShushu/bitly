@@ -16,7 +16,6 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	defer handler.DB.Close()
 	database.Handler = handler
 	defer database.Handler.DB.Close()
 
